@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FCFAED; /* JOIN Off White */
+  --foreground: #241F21; /* JOIN Warm Black */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* JOIN Brand Colors */
+  --color-join-orange: #FF8208;
+  --color-join-black: #241F21;
+  --color-join-white: #FCFAED;
+  --color-join-gold: #F2C740;
+  --color-join-lime: #CCFF66;
+  --color-join-green: #3BB54A;
+  --color-join-blue: #004FA6;
+
+  /* JOIN Typography placeholders */
+  --font-sans: "Graphik", system-ui, sans-serif;
+  --font-serif: "IvyPresto Headline", Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Optional: Inverse for dark mode if requested, or keep the bright vibe */
+    --background: #241F21; /* Warm Black */
+    --foreground: #FCFAED; /* Off White */
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Typography Base Classes (based on brand guidelines) */
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+}
+
+h4, h5, h6, .font-sans {
+  font-family: var(--font-sans);
+}
