@@ -32,6 +32,12 @@ This project is not a website rebuild. Max and Mac are developing the narrative 
 - RFP: `/Users/pete/Dropbox/_Clients/Join/WAF/WAFF x JOIN Strategies 2026.docx.md`
 - JOIN draft response/copy: `/Users/pete/Dropbox/_Clients/Join/WAF/We Are Family Foundation Proposal Writing.md`
 
+## Repo Map
+
+- `pitch-deck/` — Next.js proposal/deck application.
+- `DESIGN.md` — WAFF/JOIN visual identity and design-system reference. Read this when doing visual, layout, or brand-sensitive work.
+- `R2-OPTIMIZATION-PLAN.md` — optimization planning notes.
+
 ## Key People
 
 - **Pete Wallace** — Designer / visual proposal lead
@@ -47,3 +53,15 @@ This project is not a website rebuild. Max and Mac are developing the narrative 
 - Brand system is likely thin. May need to systematize early.
 - Materials may be used at UN, WEF, on national TV — portfolio-worthy work.
 - Design should clarify and elevate JOIN's response, not over-author the strategy.
+
+## Agent Performance
+
+- Avoid broad scans of generated or dependency directories.
+- Exclude `pitch-deck/node_modules/**`, `pitch-deck/.next/**`, `pitch-deck/tsconfig.tsbuildinfo`, `pitch-deck/next-env.d.ts`, and `.git-backups/**` unless the user explicitly asks to inspect them.
+- Use targeted searches in `pitch-deck/src/**` and config files before expanding scope.
+
+## Validation
+
+- For code changes inside `pitch-deck/`, run validation from `pitch-deck/`.
+- Default checks: `npm run lint`; run `npm run build` when implementation changes affect app behavior, routing, rendering, or production output.
+- For instruction-only changes, review diffs and skip app build unless requested.

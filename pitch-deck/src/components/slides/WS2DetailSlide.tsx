@@ -21,15 +21,15 @@ export function WS2DetailSlide() {
         {formats.map(([title, copy], index) => (
           <article
             key={title}
-            data-step-start={String(index * 0.25)}
-            className="deep-step bg-limestone p-5"
-            style={{ "--step-start": String(index * 0.25) } as CSSProperties}
+            data-step-start={String(index * 0.2)}
+            className="deep-step bg-limestone p-4 xl:p-5"
+            style={{ "--step-start": String(index * 0.2) } as CSSProperties}
           >
-            <div className="mb-5 flex aspect-[4/3] items-center justify-center rounded-sm bg-ink/5 p-4">
+            <div className="mb-4 flex aspect-[4/3] max-h-32 items-center justify-center rounded-sm bg-ink/5 p-4 xl:max-h-40">
               <div className="text-xs font-medium tracking-wide text-ink/40">Mockup area</div>
             </div>
-            <h3 className="mb-3 text-2xl font-bold tracking-[-0.04em]">{title}</h3>
-            <p className="leading-7 text-ink/68">{copy}</p>
+            <h3 className="mb-2 text-xl font-bold tracking-[-0.04em] xl:text-2xl">{title}</h3>
+            <p className="text-sm leading-6 text-ink/68 xl:text-base xl:leading-7">{copy}</p>
           </article>
         ))}
       </div>

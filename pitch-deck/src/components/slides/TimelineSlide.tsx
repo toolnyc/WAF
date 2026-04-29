@@ -19,9 +19,9 @@ export function TimelineSlide() {
         {timeline.map(([date, copy], index) => (
           <article
             key={date}
-            data-step-start={String(index * 0.18)}
+            data-step-start={String(index * 0.16)}
             className="deep-step relative bg-limestone p-5"
-            style={{ "--step-start": String(index * 0.18) } as CSSProperties}
+            style={{ "--step-start": String(index * 0.16) } as CSSProperties}
           >
             <p className="mb-10 text-sm font-semibold text-join-blue">{date}</p>
             <p className="text-lg font-semibold leading-7 tracking-[-0.03em]">{copy}</p>

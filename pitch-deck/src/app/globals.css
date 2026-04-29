@@ -75,9 +75,11 @@ a {
 }
 
 .deep-step {
-  opacity: 0.18;
-  transform: translate3d(0, 28px, 0);
+  --step-reveal: 0;
+  opacity: var(--step-reveal);
+  transform: translate3d(0, calc((1 - var(--step-reveal)) * 12px), 0);
   will-change: opacity, transform;
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-photo {

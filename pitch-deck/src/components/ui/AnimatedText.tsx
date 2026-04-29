@@ -8,14 +8,15 @@ type AnimatedTextProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  active?: boolean;
 };
 
-export function AnimatedText({ children, className, delay = 0 }: AnimatedTextProps) {
+export function AnimatedText({ children, className, delay = 0, active = true }: AnimatedTextProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay }}
       className={cn(className)}
     >
       {children}

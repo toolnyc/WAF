@@ -1,8 +1,8 @@
 "use client";
 
-import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Slide } from "@/components/deck/Slide";
 import { SlideTrack } from "@/components/deck/SlideTrack";
@@ -11,6 +11,7 @@ import { buildScrollPlan, getScrollState, getSlideScrollTop } from "@/lib/scroll
 import { slideRegistry } from "@/lib/slides";
 
 const clamp = (value: number, min = 0, max = 1) => Math.min(Math.max(value, min), max);
+const STEP_REVEAL_SPAN = 0.3;
 
 function applyDeepProgress(slide: HTMLElement, progress: number) {
   const safeProgress = clamp(progress);
@@ -23,9 +24,8 @@ function applyDeepProgress(slide: HTMLElement, progress: number) {
 
   slide.querySelectorAll<HTMLElement>("[data-step-start]").forEach((step) => {
     const start = Number(step.dataset.stepStart ?? 0);
-    const reveal = clamp((safeProgress - start) * 3.5 + 0.18);
-    step.style.opacity = String(0.18 + reveal * 0.82);
-    step.style.transform = `translate3d(0, ${(1 - reveal) * 28}px, 0)`;
+    const reveal = clamp((safeProgress - start) / STEP_REVEAL_SPAN);
+    step.style.setProperty("--step-reveal", String(reveal));
   });
 }
 
@@ -33,7 +33,6 @@ export function DeckShell() {
   const shellRef = useRef<HTMLElement | null>(null);
   const pinRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const lenisRef = useRef<Lenis | null>(null);
   const triggerRef = useRef<ReturnType<typeof ScrollTrigger.create> | null>(null);
   const activeIndexRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -41,21 +40,21 @@ export function DeckShell() {
   const plan = useMemo(() => buildScrollPlan(slideRegistry), []);
 
   const scrollToSlide = useCallback(
-    (id: string) => {
+    (id: string, instant = false) => {
       const index = slideRegistry.findIndex((slide) => slide.id === id);
-      if (index < 0) return;
+      if (index < 0 || index >= slideRegistry.length) return;
 
       const start = triggerRef.current?.start ?? 0;
-      const target = getSlideScrollTop(index, plan, window.innerHeight, start) + (index === 0 ? 0 : 2);
-      const springEase = (time: number) => {
-        const c4 = (2 * Math.PI) / 3;
-        return time === 0 ? 0 : time === 1 ? 1 : Math.pow(2, -10 * time) * Math.sin((time * 10 - 0.75) * c4) + 1;
-      };
+      const target = getSlideScrollTop(index, plan, window.innerHeight, start);
 
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(target, { duration: 0.7, easing: springEase });
+      if (instant) {
+        window.scrollTo({ top: target, behavior: "instant" });
       } else {
-        window.scrollTo({ top: target, behavior: "smooth" });
+        gsap.to(window, {
+          scrollTo: { y: target, autoKill: false },
+          duration: 0.5,
+          ease: "power2.out",
+        });
       }
     },
     [plan],
@@ -64,22 +63,12 @@ export function DeckShell() {
   useEffect(() => {
     if (!shellRef.current || !pinRef.current || !trackRef.current) return;
 
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     const shell = shellRef.current;
     const pin = pinRef.current;
     const track = trackRef.current;
     const slides = Array.from(track.querySelectorAll<HTMLElement>("[data-slide-panel]"));
-    const lenis = new Lenis({ lerp: 0.22, smoothWheel: true, wheelMultiplier: 1.4 });
-    lenisRef.current = lenis;
-
-    const tick = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-
-    lenis.on("scroll", () => ScrollTrigger.update());
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
 
     const updateTrack = (progress: number) => {
       const state = getScrollState(progress * plan.scrollUnits, plan);
@@ -114,8 +103,8 @@ export function DeckShell() {
       trigger: shell,
       pin,
       start: "top top",
-      end: () => `+=${plan.scrollUnits * window.innerHeight}`,
-      scrub: 0.2,
+      end: () => `+=${plan.scrollUnits * window.innerHeight * 0.2}`,
+      scrub: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => updateTrack(self.progress),
@@ -127,10 +116,7 @@ export function DeckShell() {
 
     return () => {
       trigger.kill();
-      lenis.destroy();
-      gsap.ticker.remove(tick);
       triggerRef.current = null;
-      lenisRef.current = null;
     };
   }, [plan]);
 
@@ -155,7 +141,7 @@ export function DeckShell() {
           </SlideTrack>
         </div>
       </section>
-      <TOCButton visible={activeIndex > 1} onClick={() => scrollToSlide("contents")} />
+      <TOCButton visible={activeIndex > 1} onClick={() => scrollToSlide("contents", true)} />
     </main>
   );
 }

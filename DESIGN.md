@@ -2,7 +2,7 @@
 ---
 version: alpha
 name: We Are Family Foundation (WAFF)
-description: Visual identity system for WAFF pitch decks and collateral, managed by JOIN Strategies. Dual-brand approach — JOIN provides the production backbone and deck aesthetic; WAFF's identity, mission, and assets take center stage.
+description: Visual identity system for WAFF RFP proposal materials, managed by JOIN Strategies. Dual-brand approach — JOIN provides the proposal structure and production backbone; WAFF's identity, mission, youth leaders, and assets take center stage.
 colors:
   # JOIN Strategies palette (deck production layer)
   join-ink: "#241F21"         # Warm Black — headlines, core text
@@ -16,6 +16,7 @@ colors:
   waff-black: "#000000"       # Pure black — WAFF logo, bold headlines, high-contrast photography
   waff-white: "#FFFFFF"       # Pure white — reversed type on photo backgrounds
 typography:
+  # JOIN proposal layer
   display:
     fontFamily: IvyPresto Headline
     fontWeight: 600
@@ -24,6 +25,19 @@ typography:
     fontFamily: Graphik
     fontSize: 18px
     lineHeight: 1.6
+  # WAFF website / native brand layer
+  waffPrimary:
+    fontFamily: Futura PT
+    usage: WAFF-native headlines, body copy, navigation, buttons, and core branded assets
+  waffAccent:
+    fontFamily: Josefin Sans
+    usage: uppercase utility labels, mobile navigation, blog titles/meta, secondary CTAs
+  waffEditorial:
+    fontFamily: Raleway
+    usage: excerpts, read-more links, and supporting editorial copy
+  waffCondensedAccent:
+    fontFamily: Agdasima
+    usage: narrow uppercase image subtitles and graphic accent labels
 rounded:
   sm: 2px
   md: 4px
@@ -37,7 +51,31 @@ spacing:
 
 We Are Family Foundation (WAFF) is a global youth empowerment nonprofit co-founded in 2002 by music icon **Nile Rodgers**, inspired by the true meaning of his song "We Are Family." The visual identity must meet a high quality bar suitable for the entertainment industry (board includes CAA, Rockefeller) while remaining grounded in humanitarian mission. The brand personality is institutional yet vibrant, trustworthy yet youth-forward.
 
-This is an RFP response — the deck must demonstrate JOIN Strategies' production quality while keeping WAFF's mission, voice, and assets front and center.
+This is an RFP response for WAFF's 2026 Three Dot Dash / Global Teen Leader / Just Peace Summit scope. The proposal must demonstrate JOIN Strategies' production quality while keeping WAFF's mission, voice, and assets front and center. Max Concordia and Mac Goldberg lead the narrative strategy; Pete Wallace's role is to visually articulate that strategy with clarity, emotional resonance, and premium presentation value.
+
+## RFP Design Lens
+
+The proposal should make JOIN's response feel like a coherent campaign system rather than a list of deliverables. Design should make the narrative infrastructure visible, persuasive, and easy to understand.
+
+### Primary Design Responsibilities
+
+- Translate Max and Mac's narrative/campaign thinking into a clear visual proposal experience.
+- Make the three workstreams legible as one June-September arc.
+- Balance youth authenticity with institutional credibility for donors, partners, and VIP audiences.
+- Show care for GTLs as real young leaders, not generic nonprofit subjects.
+- Give the Abbey Road opening ceremony video special visual weight because it is the highest-stakes donor-facing moment.
+
+### RFP Workstreams
+
+| Workstream | Design job |
+|---|---|
+| **2026 GTL Launch** | Show how individual GTL stories can live inside a cohesive cohort system. |
+| **Pre-Summit Social Content** | Make the ongoing content campaign feel modular, platform-native, and steady without becoming cluttered. |
+| **Abbey Road Opening Ceremony Video** | Communicate emotional scale, cultural significance, and donor-facing polish. |
+
+### Campaign Spine
+
+Use **"We Move Us Forward"** as a unifying proposal/campaign idea. It should clarify the creative approach across workstreams, but should not compete with or replace WAFF, Three Dot Dash, Global Teen Leaders, Just Peace Summit, or Abbey Road.
 
 ## Dual-Brand Approach
 
@@ -153,7 +191,29 @@ WAFF's own identity runs on stark black-and-white contrast layered with bold pho
 
 ## Typography
 
-The typography strategy leverages the elegance of **IvyPresto Headline** for narrative impact and **Graphik** for contemporary professionalism.
+### WAFF Website Font Palette
+
+WAFF's current public website (`wearefamilyfoundation.org`) loads a Squarespace / Adobe Typekit and Google Fonts palette. For WAFF-native design assets, prioritize the website fonts below rather than JOIN's proposal fonts.
+
+| Role | Font | Website usage observed | Notes for design assets |
+|---|---|---|---|
+| **Primary WAFF brand sans** | **Futura PT** | Body copy, H1/H2/H3, header nav, announcement bar, buttons, image-card titles/subtitles | Treat as the core WAFF-native font. Use for most branded social, deck, and campaign assets when the asset should feel directly WAFF-owned. |
+| **Secondary utility sans** | **Josefin Sans** | Mobile nav, blog titles/meta, pagination labels, search, system buttons | Best for narrow uppercase labels, secondary CTAs, and compact UI/utility moments. |
+| **Editorial/support sans** | **Raleway** | Blog excerpts, read-more links, overlap image titles | Use sparingly for support copy or editorial modules when matching the site. |
+| **Condensed accent** | **Agdasima** | Uppercase image-overlap subtitles | Use for tight, graphic, all-caps accent labels only. |
+| **Legacy/support fonts** | Brandon Grotesque, LTC Bodoni 175, LFT Etica Condensed | Product/footer/share/gallery utility styles in Squarespace CSS | Avoid as primary campaign fonts unless matching a specific site component. |
+
+Observed website type settings:
+- **Body:** Futura PT, 400, 18px, 1.6 line-height, slight tracking.
+- **H1:** Futura PT, 400, 40px, 1.2 line-height, slight tracking.
+- **H2:** Futura PT, 500, uppercase, 28px, 1.6 line-height.
+- **H3:** Futura PT, 500, uppercase, 16px, 2.2 line-height, wider tracking.
+- **Header nav:** Futura PT, 500, uppercase, 13px.
+- **Image/card title:** Futura PT, 700, 33px, tight line-height.
+
+### JOIN Proposal Typography
+
+The proposal/deck typography strategy leverages the elegance of **IvyPresto Headline** for narrative impact and **Graphik** for contemporary professionalism. Use these as the JOIN presentation layer, not as a replacement for WAFF's website-native font system.
 
 - **Headlines:** Set in IvyPresto Headline to establish a sophisticated and trustworthy voice. Use for mission statements and "WE..." declarations.
 - **Body:** Graphik Regular ensures readability and modern clarity.

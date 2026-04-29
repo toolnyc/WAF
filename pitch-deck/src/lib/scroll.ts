@@ -34,7 +34,7 @@ export function buildScrollPlan(slides: ScrollPlanSlide[]): ScrollPlan {
     slides,
     starts,
     totalWeight,
-    scrollUnits: starts.at(-1) ?? 0,
+    scrollUnits: totalWeight,
   };
 }
 
@@ -57,7 +57,9 @@ export function getScrollState(positionUnits: number, plan: ScrollPlan): ScrollS
   const slide = plan.slides[segmentIndex];
   const localUnits = clampedPosition - plan.starts[segmentIndex];
   const weight = Math.max(1, slide.scrollWeight);
-  const holdUnits = Math.max(0, weight - 1);
+  // Hold phase = 80% of weight, transition phase = 20%
+  const holdUnits = weight * 0.8;
+  const transitionUnits = weight * 0.2;
 
   if (segmentIndex === lastIndex) {
     return {
@@ -68,9 +70,11 @@ export function getScrollState(positionUnits: number, plan: ScrollPlan): ScrollS
     };
   }
 
-  const transitionUnits = Math.max(1, weight - holdUnits);
+  // Stay on slide during hold phase (xIndex stays at segmentIndex)
+  // Then transition to next slide during transition phase
   const transitionProgress = clamp((localUnits - holdUnits) / transitionUnits, 0, 1);
-  const deepProgress = weight > 1 ? clamp(localUnits / Math.max(holdUnits, 1), 0, 1) : 1;
+  // Deep progress fills during hold phase
+  const deepProgress = clamp(localUnits / holdUnits, 0, 1);
 
   return {
     segmentIndex,

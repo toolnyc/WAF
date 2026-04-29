@@ -19,9 +19,9 @@ export function ArtDirectionSlide() {
         {directions.map(([title, copy], index) => (
           <article
             key={title}
-            data-step-start={String(index * 0.19)}
+            data-step-start={String(index * 0.16)}
             className={`deep-step p-6 ${index === 4 ? "col-span-2 bg-ink text-limestone" : "bg-limestone"}`}
-            style={{ "--step-start": String(index * 0.19) } as CSSProperties}
+            style={{ "--step-start": String(index * 0.16) } as CSSProperties}
           >
             <div className="mb-8 flex h-32 items-center justify-center border border-current/10 bg-ink/5">
               <span className="text-xs font-medium tracking-wide text-current/30">Moodboard</span>

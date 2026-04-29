@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { ImpactNumber } from "@/components/ui/ImpactNumber";
 
 const lanes = [
@@ -22,8 +23,13 @@ export function ArcOverviewSlide() {
       </div>
       <div className="relative grid gap-px bg-ink/10 md:grid-cols-4">
         <div className="absolute left-[8%] right-[8%] top-10 hidden h-0.5 bg-ink/20 md:block" />
-        {lanes.map(([date, title, copy]) => (
-          <article key={title} className="relative bg-limestone p-6">
+        {lanes.map(([date, title, copy], index) => (
+          <article
+            key={title}
+            data-step-start={String(index * 0.2)}
+            className="deep-step relative bg-limestone p-6"
+            style={{ "--step-start": String(index * 0.2) } as CSSProperties}
+          >
             <p className="mb-8 inline-flex bg-ink px-3 py-1 text-xs font-medium tracking-wide text-limestone">{date}</p>
             <h3 className="mb-3 text-2xl font-bold tracking-[-0.04em]">{title}</h3>
             <p className="leading-7 text-ink/65">{copy}</p>
