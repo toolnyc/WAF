@@ -1,47 +1,122 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FCFAED; /* JOIN Off White */
-  --foreground: #241F21; /* JOIN Warm Black */
+  --join-ink: #241f21;
+  --join-limestone: #fcfaed;
+  --join-orange: #ff8208;
+  --join-gold: #f2c740;
+  --join-lime: #ccff66;
+  --join-green: #3bb54a;
+  --join-blue: #004fa6;
+  --waff-black: #000000;
+  --waff-white: #ffffff;
+  --font-display-stack: "IvyPresto Headline", Georgia, "Times New Roman", serif;
+  --font-body-stack: "Graphik", "Futura PT", var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --radius-card: 1.5rem;
+  --spacing-base: 16px;
+  --spacing-gutter: 24px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  /* JOIN Brand Colors */
-  --color-join-orange: #FF8208;
-  --color-join-black: #241F21;
-  --color-join-white: #FCFAED;
-  --color-join-gold: #F2C740;
-  --color-join-lime: #CCFF66;
-  --color-join-green: #3BB54A;
-  --color-join-blue: #004FA6;
-
-  /* JOIN Typography placeholders */
-  --font-sans: "Graphik", system-ui, sans-serif;
-  --font-serif: "IvyPresto Headline", Georgia, serif;
+  --color-background: var(--join-limestone);
+  --color-foreground: var(--join-ink);
+  --color-ink: var(--join-ink);
+  --color-limestone: var(--join-limestone);
+  --color-join-orange: var(--join-orange);
+  --color-join-gold: var(--join-gold);
+  --color-join-lime: var(--join-lime);
+  --color-join-green: var(--join-green);
+  --color-join-blue: var(--join-blue);
+  --color-waff-black: var(--waff-black);
+  --color-waff-white: var(--waff-white);
+  --font-display: var(--font-display-stack);
+  --font-body: var(--font-body-stack);
+  --font-sans: var(--font-body-stack);
+  --font-serif: var(--font-display-stack);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Optional: Inverse for dark mode if requested, or keep the bright vibe */
-    --background: #241F21; /* Warm Black */
-    --foreground: #FCFAED; /* Off White */
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--join-limestone);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  overflow-x: hidden;
+  color: var(--join-ink);
+  font-family: var(--font-body-stack);
 }
 
-/* Typography Base Classes (based on brand guidelines) */
-h1, h2, h3, .font-serif {
-  font-family: var(--font-serif);
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-h4, h5, h6, .font-sans {
-  font-family: var(--font-sans);
+::selection {
+  background: var(--join-lime);
+  color: var(--join-ink);
+}
+
+.deck-slide {
+  --deep-progress: 0;
+  isolation: isolate;
+}
+
+.deck-grid {
+  background-image:
+    linear-gradient(rgba(36, 31, 33, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 31, 33, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.deep-step {
+  opacity: 0.18;
+  transform: translate3d(0, 28px, 0);
+  will-change: opacity, transform;
+}
+
+.hero-photo::before,
+.photo-card::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: radial-gradient(circle, currentColor 0.8px, transparent 0.8px);
+  background-size: 9px 9px;
+  mix-blend-mode: soft-light;
+}
+
+.hero-photo {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 42%),
+    radial-gradient(circle at 50% 45%, rgba(252, 250, 237, 0.18), transparent 28%),
+    linear-gradient(135deg, #111, #2a2527 48%, #050505);
+}
+
+.photo-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.waff-rings::before {
+  content: "";
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-right: 0.65rem;
+  vertical-align: -0.2rem;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px transparent, 0 0 0 5px currentColor, 0 0 0 9px transparent, 0 0 0 10px currentColor;
+}
+
+@media (max-width: 768px) {
+  .deck-slide {
+    overflow-y: hidden;
+  }
 }
