@@ -11,8 +11,9 @@
   --waff-black: #000000;
   --waff-white: #ffffff;
   --font-display-stack: "IvyPresto Headline", Georgia, "Times New Roman", serif;
-  --font-body-stack: "Graphik", "Futura PT", var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  --radius-card: 1.5rem;
+  --font-body-stack: "Graphik", "futura-pt", var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-waff-primary: "futura-pt", "Futura PT", var(--font-geist-sans), sans-serif;
+  --radius-card: 0.25rem;
   --spacing-base: 16px;
   --spacing-gutter: 24px;
 }
@@ -79,23 +80,20 @@ a {
   will-change: opacity, transform;
 }
 
-.hero-photo::before,
-.photo-card::before {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-  background-image: radial-gradient(circle, currentColor 0.8px, transparent 0.8px);
-  background-size: 9px 9px;
-  mix-blend-mode: soft-light;
+.hero-photo {
+  background: var(--join-ink);
 }
 
-.hero-photo {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 42%),
-    radial-gradient(circle at 50% 45%, rgba(252, 250, 237, 0.18), transparent 28%),
-    linear-gradient(135deg, #111, #2a2527 48%, #050505);
+.hero-photo-orange {
+  background: var(--join-orange);
+}
+
+.hero-photo-green {
+  background: var(--join-green);
+}
+
+.hero-photo-blue {
+  background: var(--join-blue);
 }
 
 .photo-card {

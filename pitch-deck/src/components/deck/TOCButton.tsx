@@ -15,7 +15,7 @@ export function TOCButton({ visible, onClick }: TOCButtonProps) {
       aria-label="Back to contents"
       onClick={onClick}
       className={cn(
-        "fixed right-5 top-5 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-limestone/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink shadow-sm backdrop-blur transition duration-300",
+        "fixed right-5 top-5 z-50 flex items-center gap-2 rounded-sm border border-ink/10 bg-limestone/90 px-4 py-2 text-xs font-medium tracking-wide text-ink transition-all duration-300 ease-out",
         visible ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0",
       )}
     >

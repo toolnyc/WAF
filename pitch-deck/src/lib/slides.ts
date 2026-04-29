@@ -34,8 +34,8 @@ export type DeckSlide = {
 };
 
 export const slideRegistry: DeckSlide[] = [
-  { id: "contents", label: "Table of Contents", kicker: "Home", scrollWeight: 1, accent: "#241F21", theme: "light", component: TOCSlide },
   { id: "cover", label: "We Move Us Forward", kicker: "Cover", scrollWeight: 1, accent: "#FF8208", theme: "dark", component: CoverSlide },
+  { id: "contents", label: "Table of Contents", kicker: "Home", scrollWeight: 1, accent: "#241F21", theme: "light", component: TOCSlide },
   { id: "goals", label: "We Will + Goals", kicker: "Intro", scrollWeight: 3, accent: "#FF8208", theme: "light", component: GoalsSlide },
   { id: "theme", label: "Core Theme", kicker: "Creative Northstar", scrollWeight: 4, accent: "#CCFF66", theme: "dark", component: ThemeSlide },
   { id: "art-direction", label: "Art Direction", kicker: "Look + Feel", scrollWeight: 1, accent: "#F2C740", theme: "light", component: ArtDirectionSlide },

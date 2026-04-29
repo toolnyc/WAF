@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WAFF x JOIN Proposal",
-  description: "Horizontal proposal presentation for the WAFF 2026 Three Dot Dash RFP response.",
+  title: "2026 GTL Campaign Proposal",
+  description: "Join Strategies proposal for the 2026 Global Teen Leaders campaign.",
 };
 
 export default function RootLayout({
@@ -24,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth`}>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/nhp6oel.css" />
+      </head>
       <body className="min-h-full bg-limestone text-ink antialiased">{children}</body>
     </html>
   );

@@ -47,10 +47,13 @@ export function DeckShell() {
 
       const start = triggerRef.current?.start ?? 0;
       const target = getSlideScrollTop(index, plan, window.innerHeight, start) + (index === 0 ? 0 : 2);
-      const easing = (time: number) => 1 - Math.pow(1 - time, 3);
+      const springEase = (time: number) => {
+        const c4 = (2 * Math.PI) / 3;
+        return time === 0 ? 0 : time === 1 ? 1 : Math.pow(2, -10 * time) * Math.sin((time * 10 - 0.75) * c4) + 1;
+      };
 
       if (lenisRef.current) {
-        lenisRef.current.scrollTo(target, { duration: 1.15, easing });
+        lenisRef.current.scrollTo(target, { duration: 0.7, easing: springEase });
       } else {
         window.scrollTo({ top: target, behavior: "smooth" });
       }
@@ -67,7 +70,7 @@ export function DeckShell() {
     const pin = pinRef.current;
     const track = trackRef.current;
     const slides = Array.from(track.querySelectorAll<HTMLElement>("[data-slide-panel]"));
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true, wheelMultiplier: 0.85 });
+    const lenis = new Lenis({ lerp: 0.22, smoothWheel: true, wheelMultiplier: 1.4 });
     lenisRef.current = lenis;
 
     const tick = (time: number) => {
@@ -112,7 +115,7 @@ export function DeckShell() {
       pin,
       start: "top top",
       end: () => `+=${plan.scrollUnits * window.innerHeight}`,
-      scrub: 0.85,
+      scrub: 0.2,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => updateTrack(self.progress),
@@ -152,7 +155,7 @@ export function DeckShell() {
           </SlideTrack>
         </div>
       </section>
-      <TOCButton visible={activeIndex > 0} onClick={() => scrollToSlide("contents")} />
+      <TOCButton visible={activeIndex > 1} onClick={() => scrollToSlide("contents")} />
     </main>
   );
 }

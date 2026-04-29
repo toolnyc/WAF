@@ -25,7 +25,7 @@ export function Slide({ slide, index, children }: SlideProps) {
       style={{ "--accent": slide.accent } as CSSProperties}
       aria-label={slide.label}
     >
-      <div className="pointer-events-none absolute inset-x-8 top-5 z-30 flex items-center justify-between text-[0.66rem] font-semibold uppercase tracking-[0.28em] opacity-60 md:inset-x-14">
+      <div className="pointer-events-none absolute inset-x-8 top-5 z-30 flex items-center justify-between text-[0.66rem] font-medium tracking-wide opacity-60 md:inset-x-14">
         <span>{slide.kicker}</span>
         <span>{String(index).padStart(2, "0")}</span>
       </div>
